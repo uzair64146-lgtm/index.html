@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>I Love You Hafsa ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                -45deg,
+                #ff416c,
+                #ff4b2b,
+                #ff758c,
+                #c471ed
+            );
+
+            background-size: 400% 400%;
+            animation: backgroundMove 8s ease infinite;
+        }
+
+        /* Background Animation */
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Main Container */
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Heart */
+
+        .heart {
+            font-size: 130px;
+
+            animation:
+                heartbeat 1s infinite,
+                rotateHeart 4s infinite ease-in-out;
+
+            filter: drop-shadow(0 0 20px white);
+        }
+
+        @keyframes heartbeat {
+
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateHeart {
+
+            0% {
+                rotate: 0deg;
+            }
+
+            25% {
+                rotate: -5deg;
+            }
+
+            75% {
+                rotate: 5deg;
+            }
+
+            100% {
+                rotate: 0deg;
+            }
+        }
+
+        /* I Love You */
+
+        h1 {
+            color: white;
+            font-size: 55px;
+            margin-top: 20px;
+
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+
+            from {
+                text-shadow:
+                    0 0 5px white,
+                    0 0 10px white;
+            }
+
+            to {
+                text-shadow:
+                    0 0 10px white,
+                    0 0 30px #fff,
+                    0 0 50px #ffebf0;
+            }
+        }
+
+        /* Hafsa */
+
+        .name {
+            color: white;
+            font-size: 75px;
+            font-weight: bold;
+
+            margin-top: 10px;
+
+            animation:
+                nameAnimation 2s infinite alternate,
+                glow 2s infinite alternate;
+        }
+
+        @keyframes nameAnimation {
+
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        /* Typing Text */
+
+        .message {
+            color: white;
+            font-size: 22px;
+            margin-top: 20px;
+
+            min-height: 30px;
+        }
+
+        /* Button */
+
+        button {
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: none;
+            border-radius: 50px;
+
+            background: white;
+            color: #ff416c;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: scale(1.15);
+
+            box-shadow:
+                0 0 20px white,
+                0 0 40px white;
+        }
+
+        /* Floating Hearts */
+
+        .floating-heart {
+
+            position: absolute;
+
+            bottom: -50px;
+
+            pointer-events: none;
+
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg)
+                    scale(1);
+
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg)
+                    scale(1.5);
+
+                opacity: 0;
+            }
+        }
+
+        /* Sparkles */
+
+        .sparkle {
+
+            position: absolute;
+
+            color: white;
+
+            font-size: 20px;
+
+            animation: sparkleAnimation 2s infinite;
+        }
+
+        @keyframes sparkleAnimation {
+
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="heart">
+            ❤️
+        </div>
+
+        <h1>
+            I Love You
+        </h1>
+
+        <div class="name">
+            Hafsa ❤️
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <button onclick="loveMessage()">
+            Click Me 💕
+        </button>
+
+    </div>
+
+
+    <script>
+
+        /* Typing Animation */
+
+        const text =
+            "You are the most special person in my life ❤️";
+
+        let index = 0;
+
+        function typingEffect() {
+
+            if (index < text.length) {
+
+                document.getElementById("message")
+                    .innerHTML += text.charAt(index);
+
+                index++;
+
+                setTimeout(typingEffect, 70);
+            }
+        }
+
+        typingEffect();
+
+
+        /* Floating Hearts */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "floating-heart";
+
+            const hearts = [
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "💓",
+                "💘"
+            ];
+
+            heart.innerHTML =
+                hearts[
+                    Math.floor(
+                        Math.random() * hearts.length
+                    )
+                ];
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                Math.random() * 30 + 20 + "px";
+
+            heart.style.animationDuration =
+                Math.random() * 4 + 4 + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 8000);
+        }
+
+        setInterval(createHeart, 400);
+
+
+        /* Sparkles */
+
+        function createSparkle() {
+
+            const sparkle =
+                document.createElement("div");
+
+            sparkle.className =
+                "sparkle";
+
+            sparkle.innerHTML = "✨";
+
+            sparkle.style.left =
+                Math.random() * 100 + "vw";
+
+            sparkle.style.top =
+                Math.random() * 100 + "vh";
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+
+                sparkle.remove();
+
+            }, 2000);
+        }
+
+        setInterval(createSparkle, 700);
+
+
+        /* Button */
+
+        function loveMessage() {
+
+            alert(
+                "Hafsa ❤️\n\n" +
+                "I Love You Forever & Always 💕"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
